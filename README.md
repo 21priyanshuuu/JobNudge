@@ -4,7 +4,7 @@ JobNudge is a job recommendation platform built with Next.js and machine learnin
 
 ## Demo
 
-![JobNudge Demo](./public/screenshot1.jpg)  
+![image](https://github.com/user-attachments/assets/30bfe17c-100c-4b85-ba01-04e90f3541dc)
 _An overview of JobNudge with its user-friendly interface._
 
 ## Features
@@ -25,19 +25,21 @@ _An overview of JobNudge with its user-friendly interface._
 ### 1. User Data Collection Form
 The user starts by filling out a form with their personal details and job preferences.
 
-![User Data Collection](./public/screenshot1.jpg)  
+![image](https://github.com/user-attachments/assets/6b049459-0cc7-4956-9c3d-b90730e2116e)
+
 _This is how the user input form looks._
 
 ### 2. Job Recommendations
 Once the user submits their data, they are shown job recommendations tailored to their profile.
 
-![Job Recommendation](./public/screenshot2.jpg)  
+![image](https://github.com/user-attachments/assets/30bfe17c-100c-4b85-ba01-04e90f3541dc)
 _The job recommendations page displaying the most relevant jobs for the user._
 
 ### 3. Profile Page
 The user can view and edit their profile, track past job recommendations, and refine their preferences.
 
-![Profile Page](./public/screenshot3.jpg)  
+![image](https://github.com/user-attachments/assets/fe8adac6-af17-47e0-b92b-89dd2c8d0ca5)
+ 
 _The profile page showing user details and previous job suggestions._
 
 ## Getting Started
