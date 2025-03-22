@@ -5,7 +5,7 @@ JobNudge is a job recommendation platform built with Next.js and machine learnin
 
 ## Demo
 
-![image](https://github.com/user-attachments/assets/30bfe17c-100c-4b85-ba01-04e90f3541dc)
+![image](https://github.com/user-attachments/assets/3891b196-60c8-46e2-b329-c4c2780c023e)
 _An overview of JobNudge with its user-friendly interface._
 
 ## Features
