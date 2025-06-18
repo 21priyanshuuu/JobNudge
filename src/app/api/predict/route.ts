@@ -1,44 +1,50 @@
+// File: src/app/api/predict/route.ts
+
 import { NextResponse } from "next/server";
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs";
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<Response> {
   const formData = await request.json();
 
-  // Write formData to a temporary JSON file
+  // Save formData to a temp JSON file
   const tempFilePath = path.join(process.cwd(), "temp_form_data.json");
   fs.writeFileSync(tempFilePath, JSON.stringify(formData));
 
-  // Spawn the Python process
-  const pythonExecutable = process.platform === "win32" ? "python" : "python3";
-  const pythonProcess = spawn(pythonExecutable, ["app.py", tempFilePath]);
+  try {
+    const result = await new Promise<string>((resolve, reject) => {
+      const python = spawn("python", ["app.py", tempFilePath]);
 
-  return new Promise((resolve, reject) => {
-    let output = "";
-    let error = "";
+      let output = "";
+      let error = "";
 
-    pythonProcess.stdout.on("data", (data) => {
-      output += data.toString();
+      python.stdout.on("data", (data) => {
+        output += data.toString();
+      });
+
+      python.stderr.on("data", (data) => {
+        error += data.toString();
+      });
+
+      python.on("close", (code) => {
+        fs.unlinkSync(tempFilePath); // Clean up temp file
+
+        if (code === 0) {
+          resolve(output);
+        } else {
+          reject(new Error(error || "Python script failed"));
+        }
+      });
     });
 
-    pythonProcess.stderr.on("data", (data) => {
-      error += data.toString();
-    });
+    const parsed = JSON.parse(result);
+    return NextResponse.json(parsed); // ✅ Explicitly returning Response
 
-    pythonProcess.on("close", (code) => {
-      fs.unlinkSync(tempFilePath); // Clean up the temp file
-
-      if (code !== 0) {
-        return reject(new Error(error));
-      }
-
-      try {
-        const result = JSON.parse(output);
-        resolve(NextResponse.json(result));
-      } catch (err) {
-        reject(new Error("Failed to parse JSON response from Python script"));
-      }
-    });
-  });
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err.message || "Something went wrong" },
+      { status: 500 }
+    );
+  }
 }

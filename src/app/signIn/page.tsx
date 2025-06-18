@@ -1,9 +1,9 @@
 "use client";
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/dist/types/components";
+import { LoginLink } from '@kinde-oss/kinde-auth-nextjs/components';
 const signInPage = () => {
   return (
     <div>
-      <RegisterLink>SignIn</RegisterLink>
+      <LoginLink>Login</LoginLink>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { FaSignOutAlt, FaUser, FaEnvelope, FaPhone, FaBuilding, FaMapMarkerAlt } from "react-icons/fa";
